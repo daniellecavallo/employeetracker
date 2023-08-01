@@ -21,7 +21,7 @@ function MainMenu(){
       type: 'list',
       message: 'What would you like to do?',
       name: 'selection',
-      choices: ['view all departments', 'view all roles', 'view all employees', 'add employee', 'add role', 'add department', 'update employee']
+      choices: ['view all departments', 'view all roles', 'view all employees', 'add employee', 'add role', 'add department', 'update employee', 'quit']
     },
     
   ])
@@ -34,9 +34,13 @@ function MainMenu(){
         break;
         case "view all roles":     
         console.log("view all roles")
+        getRoles();
+        MainMenu();
         break;
         case "view all employees":     
         console.log("view all employees")
+        getEmployees();
+        MainMenu();
         break;
         case "add employee":     
         console.log("add employee")
@@ -56,11 +60,28 @@ function MainMenu(){
 });
 
 }
-async function getdepartments(){
+ async function getdepartments(){
 
-    let query = "SELECT * from departments"
-    const departments = await connection.query(query)
+    let query = "SELECT * FROM department"
+     const departments = await connection.promise().query(query)
 
-    console.table(departments)
+    console.log(departments)
 
 }
+
+ async function getRoles() {
+    let query = "SELECT * FROM role"
+    const roles = await connection.promise().query(query)
+
+    console.log(roles)
+}
+
+async function getEmployees() {
+    let query = "SELECT * FROM employee"
+
+    const employees = await connection.promise().query(query)
+
+    console.log(employees)
+}
+
+MainMenu()
