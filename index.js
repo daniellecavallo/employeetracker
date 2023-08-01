@@ -4,20 +4,12 @@ function MainMenu(){
     inquirer
   .prompt([
     {
-      type: 'input',
-      message: 'What is your user name?',
-      name: 'username',
+      type: 'list',
+      message: 'What would you like to do?',
+      name: 'selection',
+      choices: ['view all departments', 'view all roles', 'view all employees', 'add employee', 'add role', 'add department', 'update employee']
     },
-    {
-      type: 'password',
-      message: 'What is your password?',
-      name: 'password',
-    },
-    {
-      type: 'password',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
-    },
+    
   ])
   .then((response) =>
     response.confirm === response.password
